@@ -1,0 +1,27 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp4s0:
+      dhcp4: false
+      dhcp6: false
+      #Set addresses of the main eth card statically, don't depend on DHCP else it doesn't get set
+      addresses: [10.0.0.5/16, 10.0.0.4/16]
+  bridges:
+    br0:
+      macaddress: 11:22:33:44:55:77
+      dhcp4: false
+      dhcp6: false
+      #Bridge IP address not needed strictly. But there is a bug in netplan that causes it to be specified
+      addresses: [10.0.0.6/16]
+      interfaces: [enp4s0]
+      gateway4: 10.0.0.1
+      nameservers:
+        addresses: [10.0.0.4]
+      parameters:
+        stp: false
+        forward-delay: 0
+#      routes:
+#      - to: 0.0.0.0/0
+#        via: 10.0.0.1
+#        metric: 100

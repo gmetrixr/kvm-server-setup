@@ -1,0 +1,2 @@
+#This file is read in addition to /etc/hosts by dnsmasq.dhcp.conf
+#10.0.0.10    raid.lan
